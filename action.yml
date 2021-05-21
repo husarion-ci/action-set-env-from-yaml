@@ -1,0 +1,16 @@
+name: Set env from yaml
+description: "Read in {key: value} pairs from a YAML file and set environment variables accordingly."
+
+inputs:
+  file:
+    description: Path to the yaml file
+    required: true
+
+runs:
+  using: composite
+  steps:
+    -
+      run: python3 ${{ github.action_path }}/set_env.py
+      shell: bash
+      env:
+        INPUT_FILE: ${{ inputs.file }}
